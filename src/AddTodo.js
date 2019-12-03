@@ -1,42 +1,53 @@
-import React from 'react';
-
+import React from "react";
+import { connect } from "react-redux";
+import { addTodo } from "./actionCreators/actionCreaters";
 
 class AddTodo extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            inputVal: ""
-        };
-        this.changeInput = this.changeInput.bind(this);
-        this.addTodo = this.addTodo.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputVal: ""
+    };
+    this.changeInput = this.changeInput.bind(this);
+  }
 
-    changeInput(e){
-        const newVal = e.target.value;
-        this.setState({
-            inputVal: newVal
-        });
-    }
+  changeInput(e) {
+    const newVal = e.target.value;
+    this.setState({
+      inputVal: newVal
+    });
+  }
 
-    addTodo(event){
-        event.preventDefault();
-        this.props.onTodoAdd(this.state.inputVal);
-        this.setState({
-            inputVal: ""
-        });
-    }
+  addTodo = (e, newTodo) => {
+    e.preventDefault();
+    this.props.addTodo({
+      content: newTodo,
+      id: Math.random(),
+      checked: false
+    });
+    this.setState({
+      inputVal: ""
+    });
+  };
 
-    render() {
-        const {onAdd} = this.props;
-        return <form
-            onSubmit={this.addTodo}>
-            <input
-                type="text"
-                value={this.state.inputVal}
-                onChange={this.changeInput} />
-            <button>Ekle</button>
-        </form>
-    }
+  render() {
+    return (
+      <form onSubmit={e => this.addTodo(e, this.state.inputVal)}>
+        <input
+          type="text"
+          value={this.state.inputVal}
+          onChange={this.changeInput}
+        />
+        <button>Ekle</button>
+      </form>
+    );
+  }
 }
 
-export default AddTodo;
+const mapDispatchToProps = dispatch => ({
+  addTodo: todo => {
+    dispatch(addTodo(todo));
+  }
+});
+
+export default connect(null, mapDispatchToProps)(AddTodo);

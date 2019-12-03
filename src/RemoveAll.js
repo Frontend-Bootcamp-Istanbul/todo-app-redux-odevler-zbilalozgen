@@ -1,12 +1,30 @@
-import React from 'react';
-
+import React from "react";
+import { removeAll } from "./actionCreators/actionCreaters";
+import { connect } from "react-redux";
 
 class RemoveAll extends React.Component {
-    render() {
-        return <button className="remove-all" onClick={() => {this.props.onRemoveAll()}}>
-                Tümünü Sil
-        </button>
-    }
+  removeAll = () => {
+    this.props.removeAll();
+    window.localStorage.removeItem("todos");
+  };
+  render() {
+    return (
+      <button
+        className="remove-all"
+        onClick={() => {
+          this.removeAll();
+        }}
+      >
+        Tümünü Sil
+      </button>
+    );
+  }
 }
 
-export default RemoveAll;
+const mapDispatchToProps = dispatch => ({
+  removeAll: todos => {
+    dispatch(removeAll());
+  }
+});
+
+export default connect(null, mapDispatchToProps)(RemoveAll);
