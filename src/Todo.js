@@ -5,23 +5,35 @@ import {
   hideNotification,
   removeTodo
 } from "./actionCreators/actionCreaters";
+import styled from "styled-components";
 
 function Todo(props) {
+  const TodoDiv = styled.div`
+    cursor: pointer;
+    margin-bottom: 10px;
+    text-decoration: ${props.checked ? "line-through" : "none"};
+  `;
+
+  const RemoveTodo = styled.span`
+    background-color: #76030b;
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 10px;
+    padding: 5px;
+    color: #fff;
+    border-radius: 5px;
+  `;
+
   const { content, id, checked } = props;
-  let itemClass = "todo-item";
-  if (checked) {
-    itemClass += " checked";
-  }
+
   return (
-    <div
-      className={itemClass}
+    <TodoDiv
       onClick={() => {
         props.onCheckedToggle(id);
       }}
     >
       {content}
-      <span
-        className="remove-todo"
+      <RemoveTodo
         onClick={e => {
           e.stopPropagation();
           props.removeTodo(id);
@@ -30,8 +42,8 @@ function Todo(props) {
         }}
       >
         X
-      </span>
-    </div>
+      </RemoveTodo>
+    </TodoDiv>
   );
 }
 

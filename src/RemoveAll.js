@@ -5,6 +5,7 @@ import {
   hideNotification
 } from "./actionCreators/actionCreaters";
 import { connect } from "react-redux";
+import { ButtonMain, RemoveAllButton } from "./Components";
 
 class RemoveAll extends React.Component {
   removeAll = () => {
@@ -15,14 +16,13 @@ class RemoveAll extends React.Component {
   };
   render() {
     return (
-      <button
-        className="remove-all"
+      <RemoveAllButton
         onClick={() => {
           this.removeAll();
         }}
       >
         Tümünü Sil
-      </button>
+      </RemoveAllButton>
     );
   }
 }

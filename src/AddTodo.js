@@ -5,6 +5,7 @@ import {
   showNotification,
   hideNotification
 } from "./actionCreators/actionCreaters";
+import { ButtonMain, TextInput } from "./Components";
 
 class AddTodo extends React.Component {
   constructor(props) {
@@ -39,12 +40,12 @@ class AddTodo extends React.Component {
   render() {
     return (
       <form onSubmit={e => this.addTodo(e, this.state.inputVal)}>
-        <input
+        <TextInput
           type="text"
           value={this.state.inputVal}
           onChange={this.changeInput}
         />
-        <button>Ekle</button>
+        <ButtonMain>Ekle</ButtonMain>
       </form>
     );
   }

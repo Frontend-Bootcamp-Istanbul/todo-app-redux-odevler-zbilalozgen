@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { AddTodoWrapper } from "./Components";
 
 class Notification extends Component {
   render() {
     return (
-      <div className="todo-list">{`${this.props.newTodo} ${this.props.message} `}</div>
+      <AddTodoWrapper>
+        {" "}
+        {`${this.props.newTodo} ${this.props.message} `}
+      </AddTodoWrapper>
     );
   }
 }

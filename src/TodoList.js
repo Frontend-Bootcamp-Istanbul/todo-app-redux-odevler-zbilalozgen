@@ -3,6 +3,7 @@ import Todo from "./Todo";
 import { connect } from "react-redux";
 import { toggleTodo } from "./actionCreators/actionCreaters";
 import Notification from "./Notification";
+import { AddTodoWrapper, Header3 } from "./Components";
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -17,10 +18,10 @@ class TodoList extends React.Component {
   render() {
     return (
       <>
-        <div className="todo-list">
-          <h3>
+        <AddTodoWrapper>
+          <Header3>
             Todos <span>{this.props.todos.length}</span>
-          </h3>
+          </Header3>
           {this.props.todos.map(todo => {
             return (
               <Todo
@@ -30,7 +31,7 @@ class TodoList extends React.Component {
               />
             );
           })}
-        </div>
+        </AddTodoWrapper>
         <Notification />
       </>
     );
