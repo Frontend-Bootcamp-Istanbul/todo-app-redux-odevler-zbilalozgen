@@ -4,13 +4,17 @@ import {
   ADD_TODO,
   REMOVE_TODO,
   REMOVE_ALL,
-  TOGGLE_TODO
+  TOGGLE_TODO,
+  SHOW_NOTIFICATION,
+  HIDE_NOTIFICATION
 } from "../actions/actions";
 
 const rootReducer = function(
   state = {
     activeFilter: "all",
-    todos: []
+    todos: [],
+    message: "",
+    newTodo: ""
   },
   action
 ) {
@@ -40,6 +44,10 @@ const rootReducer = function(
         }
       });
       return { ...state, todos: toggleTodos };
+    case SHOW_NOTIFICATION:
+      return { ...state, message: action.message, newTodo: action.newTodo };
+    case HIDE_NOTIFICATION:
+      return { ...state, message: "", newTodo: "" };
     default:
       return state;
   }

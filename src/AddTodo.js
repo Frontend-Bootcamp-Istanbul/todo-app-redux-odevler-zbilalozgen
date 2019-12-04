@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addTodo } from "./actionCreators/actionCreaters";
+import {
+  addTodo,
+  showNotification,
+  hideNotification
+} from "./actionCreators/actionCreaters";
 
 class AddTodo extends React.Component {
   constructor(props) {
@@ -28,6 +32,8 @@ class AddTodo extends React.Component {
     this.setState({
       inputVal: ""
     });
+    this.props.showNotification("added to Todos!", newTodo);
+    setTimeout(this.props.hideNotification, 2000);
   };
 
   render() {
@@ -47,6 +53,12 @@ class AddTodo extends React.Component {
 const mapDispatchToProps = dispatch => ({
   addTodo: todo => {
     dispatch(addTodo(todo));
+  },
+  showNotification: (message, newTodo) => {
+    dispatch(showNotification(message, newTodo));
+  },
+  hideNotification: () => {
+    dispatch(hideNotification());
   }
 });
 

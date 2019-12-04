@@ -4,3 +4,5 @@ export const ADD_TODO = "ADD_TODO";
 export const REMOVE_TODO = "REMOVE_TODO";
 export const REMOVE_ALL = "REMOVE_ALL";
 export const TOGGLE_TODO = "TOGGLE_TODO";
+export const SHOW_NOTIFICATION = "SHOW-NOTIFICATION";
+export const HIDE_NOTIFICATION = "HIDE-NOTIFICATION";

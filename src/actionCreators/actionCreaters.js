@@ -4,7 +4,9 @@ import {
   ADD_TODO,
   REMOVE_TODO,
   REMOVE_ALL,
-  TOGGLE_TODO
+  TOGGLE_TODO,
+  SHOW_NOTIFICATION,
+  HIDE_NOTIFICATION
 } from "../actions/actions";
 
 export function setFilter(newFilter) {
@@ -29,4 +31,12 @@ export function removeAll() {
 
 export function toggleTodo(id) {
   return { type: TOGGLE_TODO, id };
+}
+
+export function showNotification(message, newTodo) {
+  return { type: SHOW_NOTIFICATION, message, newTodo };
+}
+
+export function hideNotification() {
+  return { type: HIDE_NOTIFICATION };
 }
